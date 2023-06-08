@@ -66,7 +66,7 @@
                                  <ins>${{ packag.price_promo }}</ins>
                                  {% endif %}
                               </div>
-                              <a href="{% url 'add_cart_package' packag.id %}" class="round-btn">Добавить в корзину</a>
+                              <a href="{% if request.user.is_authenticated %}{% url 'add_cart_package' package.id %}{% else %}{% url 'login_in' %}{% endif %}" class="round-btn">Добавить в корзину</a>
                            </div>
                         </article>
                      </div>
@@ -111,7 +111,11 @@
       {% include "home/blocks/search-form.html" %}
 
       
+      {% if request.user.is_authenticated %}
       {% include "profile/profile.html" %}
+      {% else %}
+      {% include "profile/not_register.html" %}
+      {% endif %}
 
    </div>
 {% endblock content %}

@@ -49,7 +49,7 @@
                   </div>
                   <h6 class="price-list">
                      <span>${{ package.price_per_person }}</span>
-                     / per person
+                     / на человека
                   </h6>
                   <a href="{% if request.user.is_authenticated %}{{ package.booking_package }}{% else %}{% url 'login_in' %}{% endif %}" class="outline-btn outline-btn-white">ЗАБРОНИРОВАТЬ</a>
                </div>

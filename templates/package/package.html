@@ -92,9 +92,9 @@
                            </div>
                            <h6 class="price-list">
                               <span>${{ package.price_per_person }}</span>
-                              / per person
+                              / на человека
                            </h6>
-                           <a href="{% url 'add_cart_package' package.id %}" class="outline-btn outline-btn-white">Добавить в корзину</a>
+                           <a href="{% if request.user.is_authenticated %}{% url 'add_cart_package' package.id %}{% else %}{% url 'login_in' %}{% endif %}" class="outline-btn outline-btn-white">Добавить в корзину</a>
                         </div>
                      </article>
                      {% endfor %}
@@ -134,7 +134,7 @@
                         </div>
                         <h6 class="price-list">
                            <span>${{ package.price_per_person }}</span>
-                           / per person
+                           / на человека
                         </h6>
                         <a href="{% url 'add_cart_package' package.id %}" class="outline-btn outline-btn-white">Добавить в корзину</a>
                      </div>
@@ -160,7 +160,11 @@
       {% include "home/blocks/search-form.html" %}
 
       
+      {% if request.user.is_authenticated %}
       {% include "profile/profile.html" %}
+      {% else %}
+      {% include "profile/not_register.html" %}
+      {% endif %}
       
    </div>
 {% endblock content %}

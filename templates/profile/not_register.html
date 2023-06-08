@@ -8,25 +8,25 @@
             <a href="{% url 'sing_in' %}" style="border: solid 1px; padding: 6px 13px; border-radius: 25px; font-size: 22px; font-weight: 500; background-color: rgb(0,133,186); color: white;">SING IN</a>
           </aside>
           <aside class="widget widget_text text-center">
-             <h3 class="widget-title">CONTACT US</h3>
+             <h3 class="widget-title">СВЯЗАТЬСЯ С НАМИ</h3>
              <div class="textwidget widget-text">
-                <p>Feel free to contact and<br/> reach us !!</p>
+                <p>Смело обращайтесь и<br/>  свяжись с нами !!</p>
                 <ul>
                    <li>
-                      <a href="tel:+01988256203">
+                      <a href="tel:{{ contacts.phone1 }}">
                          <i aria-hidden="true" class="icon icon-phone1"></i>
-                         +01(988) 256 203
+                         {{ contacts.phone1 }}
                       </a>
                    </li>
                    <li>
-                      <a href="mailtop:info@domain.com">
+                      <a href="mailtop:{{ contacts.email1 }}">
                          <i aria-hidden="true" class="icon icon-envelope1"></i>
-                         info@domain.com
+                         {{ contacts.email1 }}
                       </a>
                    </li>
                    <li>
                       <i aria-hidden="true" class="icon icon-map-marker1"></i>
-                      3146 Koontz, California
+                      {{ contacts.location }}
                    </li>
                 </ul>
              </div>
