@@ -1,0 +1,55 @@
+{% load static %}
+<!-- ***Home gallery html start from here*** -->
+<section class="home-gallery" style="padding-top: 40px;">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-sm-center">
+             <div class="section-heading">
+                <h5 class="sub-title">ФОТОГАЛЕРЕЯ</h5>
+                <h2 class="section-title">ФОТО ОТ ПУТЕШЕСТВЕННИКОВ</h2>
+                <p>Мне кажется, что некоторые люди хотят сделать это объявление, но только первые, и никто другой. Появление хвалителей. Его непременно украсит эластичность, подгонка.</p>
+             </div>
+          </div>
+       </div>
+       <div class="gallery-section">
+          <div class="gallery-container grid">
+             <div class="single-gallery grid-item">
+                <figure class="gallery-img">
+                   <a href="{{ first_image_for_homepage.image.url }}" data-fancybox="gallery">
+                      <img src="{{ first_image_for_homepage.image.url }}" alt="">
+                   </a>
+                </figure>
+             </div>
+             <div class="single-gallery grid-item">
+                <figure class="gallery-img">
+                   <a href="{{ second_image_for_homepage.image.url }}" data-fancybox="gallery">
+                      <img src="{{ second_image_for_homepage.image.url }}" alt="">
+                   </a>
+                </figure>
+             </div>
+             <div class="single-gallery grid-item">
+                <figure class="gallery-img">
+                   <a href="{{ third_image_for_homepage.image.url }}" data-fancybox="gallery">
+                      <img src="{{ third_image_for_homepage.image.url }}" alt="">
+                   </a>
+                </figure>
+             </div>
+             <div class="single-gallery grid-item">
+                <figure class="gallery-img">
+                   <a href="{{ fourth_image_for_homepage.image.url }}" data-fancybox="gallery">
+                      <img src="{{ fourth_image_for_homepage.image.url }}" alt="">
+                   </a>
+                </figure>
+             </div>
+             <div class="single-gallery grid-item">
+                <figure class="gallery-img">
+                   <a href="{{ fifth_image_for_homepage.image.url }}" data-fancybox="gallery">
+                      <img src="{{ fifth_image_for_homepage.image.url }}" alt="">
+                   </a>
+                </figure>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- ***Home gallery html end here*** -->

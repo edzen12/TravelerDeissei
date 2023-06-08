@@ -1,0 +1,42 @@
+{% load static %}
+<!-- ***Home testimonial html start from here*** -->
+<section class="home-testimonial">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+             <div class="section-heading">
+                <h5 class="sub-title">ОТЗЫВЫ КЛИЕНТОВ</h5>
+                <h2 class="section-title">СВИДЕТЕЛЬСТВО ПУТЕШЕСТВЕННИКА</h2>
+                <p>FМне кажется, что некоторые люди хотят сделать это объявление, но только первые, и никто другой. Появление хвалителей. Его непременно украсит эластичность, подгонка.</p>
+             </div>
+          </div>
+       </div>
+       <div class="testimonial-section testimonial-slider">
+         {% for review in reviews %}
+            <div class="testimonial-item">
+               <div class="testimonial-content">
+                  <div class="rating-start-wrap">
+                     <div class="rating-start">
+                        <span style="width: {{ review.raiting }}%"></span>
+                     </div>
+                  </div>
+                  <p>{{ review.message_review }}</p>
+                  <div class="author-content">
+                     <figure class="testimonial-img">
+                        <img src="{{ review.photo.url }}" alt="">
+                     </figure>
+                     <div class="author-name">
+                        <h5>{{ review.name }}</h5>
+                        <span>{{ review.who }}</span>
+                     </div>
+                  </div>
+                  <div class="testimonial-icon">
+                     <i aria-hidden="true" class="fas fa-quote-left"></i>
+                  </div>
+               </div>
+            </div>
+         {% endfor %}
+       </div>
+    </div>
+ </section>
+ <!-- ***Home testimonial html end here*** -->

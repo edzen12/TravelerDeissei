@@ -1,0 +1,48 @@
+{% load static %}
+<!-- ***Home blog html start from here*** -->
+<section class="home-blog">
+    <div class="container">
+       <div class="section-heading d-sm-flex align-items-center justify-content-between">
+          <div class="heading-group">
+             <h5 class="sub-title">ПОСЛЕДНИЙ БЛОГ</h5>
+             <h2 class="section-title">НАШИ ПОСЛЕДНИЕ ПОСТЫ</h2>
+             <p>Мне кажется, что некоторые люди хотят сделать это объявление, но только первые, и никто другой. <br/>Прихожая хвалителей. Его непременно украсит эластичность, подгонка.</p>
+          </div>
+          <div class="heading-btn">
+             <a href="{% url 'list_blog' %}" class="round-btn">Посмотреть Все Блоги</a>
+          </div>
+       </div>
+       <div class="blog-section">
+          <div class="row gx-4">
+
+            {% for blog in blogs %}
+               <div class="col-lg-6">
+                  <article class="post">
+                     <figure class="featured-post" style="background-image: url({{ blog.image.url }});"></figure>
+                     <div class="post-content">
+                        <div class="cat-meta">
+                           <a href="{% url 'list_blog' %}">{{ blog.author.name }}</a>
+                        </div>
+                        <h3><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3>
+                        <p>{{ blog.description|truncatewords:12 }}</p>
+                        <div class="post-footer d-flex justify-content-between align-items-center">
+                           <div class="post-btn">
+                              <a href="{{ blog.get_absolute_url }}" class="round-btn">Читать далее</a>
+                           </div>
+                           <div class="meta-comment">
+                              {% comment %} <a href="blog-archive.html">
+                                 <i aria-hidden="true" class="fas fa-comment"></i>
+                                 <span>0</span>
+                              </a> {% endcomment %}
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </div>
+            {% endfor %}
+
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- ***Home blog html end here*** -->

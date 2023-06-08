@@ -1,0 +1,25 @@
+{% load static %}
+<!-- ***Home callback html start from here*** -->
+<section class="home-callback bg-img-fullcallback" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+             <div class="callback-content">
+                <div class="video-button">
+                   <a  id="video-container" data-fancybox="video-gallery" href="{{ setting.link_video }}">
+                      <i class="fas fa-play"></i>
+                   </a>
+                </div>
+                <h2 class="section-title">ВЫ ГОТОВЫ К ПУТЕШЕСТВИЮ?<br> ПОМНИ НАС !!</h2>
+                <p>Мне кажется, что некоторые люди хотят сделать это объявление, но только первые, и никто другой. Появление хвалителей. Его непременно украсит эластичность, подгонка.</p>
+                <div class="callback-btn">
+                   <a href="{% url 'list_packages' %}" class="round-btn">Посмотреть пакеты</a>
+                   <a href="{% url 'about-page' %}" class="outline-btn outline-btn-white">Узнать больше</a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- ***Home callback html end here*** -->

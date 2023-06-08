@@ -1,0 +1,153 @@
+{% load static %}
+<!-- ***site footer html start form here*** -->
+<footer id="colophon" class="site-footer footer-primary">
+    <div class="top-footer">
+       <div class="container">
+          <div class="upper-footer">
+             <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                   <aside class="widget widget_text">
+                      <div class="footer-logo">
+                         <a href="{% url 'homepage' %}"><img src="{{ setting.logo.url }}" alt=""></a>
+                      </div>
+                      <div class="textwidget widget-text">
+                         {{ setting.description }}
+                      </div>
+                   </aside>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                   <aside class="widget widget_latest_post widget-post-thumb">
+                      <h3 class="widget-title">RECENT POST</h3>
+                      <ul>
+                        {% for blog in blogs %}
+                           <li>
+                              <figure class="post-thumb">
+                                 <a href="{{ blog.get_absolute_url }}"><img src="{{ blog.image.url }}" alt=""></a>
+                              </figure>
+                              <div class="post-content">
+                                 <h6>
+                                    <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>
+                                 </h6>
+                                 <div class="entry-meta">
+                                    <span class="posted-on">
+                                       <a href="{{ blog.get_absolute_url }}">{{ blog.create_add }}</a>
+                                    </span>
+                                 </div>
+                              </div>
+                           </li>
+                        {% endfor %}
+                      </ul>
+                   </aside>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                   <aside class="widget widget_text">
+                      <h3 class="widget-title">CONTACT US</h3>
+                      <div class="textwidget widget-text">
+                         <p>Feel free to contact and<br/> reach us !!</p>
+                         <ul>
+                            <li>
+                               <a href="tel:{{ contacts.phone1 }}">
+                                 <i aria-hidden="true" class="icon icon-phone1"></i>
+                                 {{ contacts.phone1 }}
+                               </a>
+                            </li>
+                            <li>
+                               <a href="mailtop:{{ contacts.email1 }}">
+                                 <i aria-hidden="true" class="icon icon-envelope1"></i>
+                                 {{ contacts.email1 }}
+                               </a>
+                            </li>
+                            <li>
+                               <i aria-hidden="true" class="icon icon-map-marker1"></i>
+                               {{ contacts.location }}
+                            </li>
+                         </ul>
+                      </div>
+                   </aside>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                   <aside class="widget">
+                      <h3 class="widget-title">Gallery</h3>
+                      <div class="gallery gallery-colum-3">
+                        {% for image in images %}
+                        <figure class="gallery-item">
+                           <a href="{{ image.image.url }}" data-fancybox="gallery-1">
+                              <img src="{{ image.image.url }}" alt="">
+                           </a>
+                        </figure>
+                        {% endfor %}
+                      </div>
+                   </aside>
+                </div>
+             </div>
+          </div>
+          <div class="lower-footer">
+             <div class="row align-items-center">
+                <div class="col-lg-6">
+                   <div class="footer-newsletter">
+                      <p>Subscribe our newsletter for more update & news !!</p>
+                      <form class="newsletter">
+                         <input type="email" name="email" placeholder="Enter Your Email">
+                         <button type="submit" class="outline-btn outline-btn-white">Subscribe</button>
+                      </form>
+                   </div>
+                </div>
+                <div class="col-lg-6 text-right">
+                   <div class="social-icon">
+                      <ul>
+                         <li>
+                            <a href="{{ setting.facebook }}" target="_blank">
+                               <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                         </li>
+                         <li>
+                            <a href="{{ setting.twitter }}" target="_blank">
+                               <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                         </li>
+                         <li>
+                            <a href="{{ setting.youtube }}" target="_blank">
+                               <i class="fab fa-youtube" aria-hidden="true"></i>
+                            </a>
+                         </li>
+                         <li>
+                            <a href="{{ setting.instagram }}" target="_blank">
+                               <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                         </li>
+                         <li>
+                            <a href="{{ setting.linkedin }}" target="_blank">
+                               <i class="fab fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                         </li>
+                      </ul>
+                   </div>
+                   <div class="footer-menu">
+                      <ul>
+                         <li>
+                            <a href="policy.html">Privacy Policy</a>
+                         </li>
+                         <li>
+                            <a href="policy.html">Term & Condition</a>
+                         </li>
+                         <li>
+                            <a href="faq.html">FAQ</a>
+                         </li>
+                      </ul>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="bottom-footer">
+       <div class="container">
+          <div class="copy-right text-center">Copyright &copy; 2022 Traveler. All rights reserved.</div>
+       </div>
+    </div>
+ </footer>
+ <!-- ***site footer html end*** -->
+ <a id="backTotop" href="#" class="to-top-icon">
+    <i class="fas fa-chevron-up"></i>
+ </a>
+ <!-- ***custom search field html*** -->

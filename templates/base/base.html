@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- favicon -->
+   <link rel="icon" type="image/png" href="{{ setting.icon.url }}">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="{% static 'assets/vendors/bootstrap/css/bootstrap.min.css' %}" media="all">
+   <!-- jquery-ui css -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/jquery-ui/jquery-ui.min.css' %}">
+   <!-- fancybox box css -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/fancybox/dist/jquery.fancybox.min.css' %}">
+   <!-- Fonts Awesome CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/fontawesome/css/all.min.css' %}">
+   <!-- Elmentkit Icon CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css' %}">
+   <!-- slick slider css -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/slick/slick.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/vendors/slick/slick-theme.css' %}">
+   <!-- google fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+   <title>{{ setting.title }}</title>
+
+   <style>
+      .blue-button {
+      background-color: #0080ff; /* Голубой цвет */
+      color: #ffffff; /* Белый цвет текста */
+      padding: 10px 20px; /* Отступы внутри кнопки */
+      margin-bottom: 10px; /* Отступ снизу */
+      border: none; /* Убираем границу кнопки */
+      border-radius: 25px; /* Закругляем углы кнопки */
+      margin-left: 50px;
+   }
+
+   .blue-button:hover {
+      background-color: #0066cc; /* Изменение цвета при наведении курсора */
+   }
+   </style>
+
+</head>
+<body class="home">
+
+   <div id="siteLoader" class="site-loader">
+      <div class="preloader-content">
+         <img src="{% static 'assets/images/loader1.gif' %}" alt="">
+      </div>
+   </div>
+
+   
+      <!-- site header html start  -->
+   <header id="masthead" class="site-header">
+      <!-- header html start -->
+      <div class="top-header">
+         <div class="container">
+            <div class="top-header-inner">
+               <div class="header-contact text-left">
+                  <a href="telto:{{ setting.number }}">
+                     <i aria-hidden="true" class="icon icon-phone-call2"></i>
+                     <div class="header-contact-details d-none d-sm-block">
+                        <span class="contact-label">Для дальшейших запросов:</span>
+                        <h5 class="header-contact-no">{{ setting.number }}</h5>
+                     </div>
+                  </a>
+               </div>
+               <div class="site-logo text-center">
+                  <h1 class="site-title">
+                     <a href="{% url 'homepage' %}">
+                        <img src="{{ setting.logo.url }}" alt="Logo">
+                     </a>
+                  </h1>
+               </div>
+               <div class="header-icon text-right">
+                  <div class="header-search-icon d-inline-block">
+                     <a href="#">
+                        <i aria-hidden="true" class="fas fa-search"></i>
+                     </a>
+                  </div>
+                  <div class="offcanvas-menu d-inline-block">
+                     <a href="#">
+                        <i aria-hidden="true" class="icon icon-user"></i>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="bottom-header">
+         <div class="container">
+            <div class="bottom-header-inner d-flex justify-content-between align-items-center">
+               <div class="header-social social-icon">
+                  <ul>
+                     <li>
+                        <a href="{{ setting.facebook }}" target="_blank">
+                           <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="{{ setting.twitter }}" target="_blank">
+                           <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                     </li>
+                     <li>
+                        <a href="{{ setting.youtube }}" target="_blank">
+                           <i class="fab fa-youtube" aria-hidden="true"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="navigation-container d-none d-lg-block">
+                  <nav id="navigation" class="navigation">
+                     <ul>
+                        <li {% block home_page %}{% endblock home_page %}>
+                           <a href="{% url 'homepage' %}">Главная</a>
+                        </li>
+                        <li {% block about_page %}{% endblock about_page %}>
+                           <a href="{% url 'about-page' %}">О Нас</a>
+                        </li>
+                        <li {% block destination_page %}{% endblock destination_page %}>
+                           <a href="{% url 'list_destination' %}">Пункт назначения</a>
+                        </li>
+                        <li {% block package_page %}{% endblock package_page %}>
+                           <a href="{% url 'no_promo_package' %}">Пакеты</a>
+                        </li>
+                        <li {% block contact_page %}{% endblock contact_page %}>
+                           <a href="{% url 'contacts' %}">Связаться с нами</a>
+                        </li>
+                     </ul>
+                  </nav>
+               </div>
+               <div class="header-btn">
+                  <a href="{% url 'no_promo_package' %}" class="round-btn">Забронируй</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="mobile-menu-container"></div>
+   </header>
+   <!-- site header html end  -->
+
+    {% block content %}
+    {% endblock content %}
+
+
+    <!-- JavaScript -->
+   <script src="{% static 'assets/vendors/jquery/jquery.js' %}"></script>
+   <script src="{% static 'assets/vendors/waypoint/waypoints.js' %}"></script>
+   <script src="{% static 'assets/vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+   <script src="{% static 'assets/vendors/jquery-ui/jquery-ui.min.js' %}"></script>
+   <script src="{% static 'assets/vendors/countdown-date-loop-counter/loopcounter.js' %}"></script>
+   <script src="{% static 'assets/vendors/counterup/jquery.counterup.min.js' %}"></script>
+   <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+   <script src="{% static 'assets/vendors/masonry/masonry.pkgd.min.js' %}"></script>
+   <script src="{% static 'assets/vendors/slick/slick.min.js' %}"></script>
+   <script src="{% static 'assets/vendors/fancybox/dist/jquery.fancybox.min.js' %}"></script>
+   <script src="{% static 'assets/vendors/slick-nav/jquery.slicknav.js' %}"></script>
+   <script src="{% static 'assets/js/custom.min.js' %}"></script>
+   
+</body>
+</html>

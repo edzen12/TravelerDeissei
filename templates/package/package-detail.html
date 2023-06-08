@@ -1,0 +1,125 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block package_page %}class="menu-active"{% endblock package_page %}
+
+
+{% block content %}
+   <div id="page" class="page">
+
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         <section class="package-inner-page">
+            <!-- ***Inner Banner html start form here*** -->
+            <div class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="page-title">{{ package.title }}</h1>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***Inner Banner html end here*** -->
+            
+            <!-- ***career section html start form here*** -->
+            <div class="inner-package-detail-wrap">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8 primary right-sidebar">
+                        <div class="single-packge-wrap">
+                           <div class="single-package-head d-flex align-items-center">
+                              <div class="package-title">
+                                 <h2>{{ package.title }}</h2>
+                                 <div class="rating-start-wrap">
+                                    <div class="rating-start">
+                                       <span style="width: {{ package.raiting }}%"></span>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="package-price">
+                                 <h6 class="price-list">
+                                    {% if package.activate_promo %}
+                                    <del style="font-size: 17px;">${{ package.price_per_person }}</del>
+                                    <span>${{ package.price_promo }}</span>
+                                    / per person
+                                    {% else %}
+                                    <span>${{ package.price_per_person }}</span>
+                                    / per person
+                                    {% endif %}
+                                 </h6>
+                              </div>
+                           </div>
+                           <div class="package-meta">
+                              <ul>
+                                 <li>
+                                    <i class="fas fa-clock"></i>
+                                    {{ package.days }}D/{{ package.nights }}N
+                                 </li>
+                                 <li>
+                                    <i class="fas fa-user-friends"></i>
+                                    pax: {{ package.max_person }}
+                                 </li>
+                                 <li>
+                                    <i class="fas fa-swimmer"></i>
+                                    Category : {{ package.category }}
+                                 </li>
+
+                                 <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    {{ package.country.title }}
+                                 </li>
+                              </ul>
+                           </div>
+                           <figure class="single-package-image">
+                              <img src="{{ package.image.url }}" alt="">
+                           </figure>
+                           <div class="package-content-detail">
+                              <article class="package-overview">
+                                 <h3>ОБЗОР    :</h3>
+                                 <p>{{ package.overview }}</p>
+                              </article>
+                              <article class="package-include bg-light-grey">
+                                 <h3>ВКЛЮЧЕНИЯ & ИСКЛЮЧЕНИЯ :</h3>
+                                 <ul style="display: contents;">
+                                    {% for include in package.include.all %}
+                                    <li><i class="fas fa-check"></i>{{ include.title }}</li>
+                                    {% endfor %}
+                                    
+                                    {% for exclude in package.exclude.all %}
+                                    <li><i class="fas fa-times"></i>{{ exclude.title }}</li>
+                                    {% endfor %}
+                                 </ul>
+                              </article>
+                              <article class="package-ininerary">
+                                 <h3>МАРШРУТ :</h3>
+                                 <p>{{ package.itinerary_desc }}</p>
+                                 <ul>
+                                    {% for inin in package.itinerary.all %}
+                                    <li>
+                                       <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                       {{ inin.title }}
+                                    </li>
+                                    {% endfor %}
+                                 </ul>
+                              </article>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***career section html start form here*** -->
+         </section>
+      </main>
+           
+      {% include "base/footer.html" %}
+
+      {% include "home/blocks/search-form.html" %}
+
+      {% include "profile/profile.html" %}
+      
+   </div>
+{% endblock content %}
+      

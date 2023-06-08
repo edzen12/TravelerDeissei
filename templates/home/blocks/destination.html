@@ -1,0 +1,45 @@
+{% load static %}
+<!-- ***Home destination html start from here*** -->
+<section class="home-destination">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-sm-center">
+             <div class="section-heading">
+                <h5 class="sub-title">РАСКРЫТЬ МЕСТО</h5>
+                <h2 class="section-title">ПОПУЛЯРНОЕ НАПРАВЛЕНИЕ</h2>
+                <p>Мне кажется, что некоторые люди хотят сделать это объявление, но только первые, и никто другой. Появление хвалителей. Его непременно украсит эластичность, подгонка.</p>
+             </div>
+          </div>
+       </div>
+       <div class="destination-section">
+          <div class="row">
+            {% for destination in destinations %}
+               
+               <div class="col-lg-4 col-md-6">
+                  <article class="destination-item" style="background-image: url({{ destination.image.url }});">
+                     <div class="destination-content">
+                        <div class="rating-start-wrap">
+                           <div class="rating-start">
+                              <span style="width: {{ destination.raiting }}%"></span>
+                           </div>
+                        </div>
+                        <span class="cat-link">
+                           <a href="{% if request.user.is_authenticated %}{% url 'list_destination' %}{% else %}{% url 'login_in' %}{% endif %}">{{ destination.country }}</a>
+                        </span>
+                        <h3>
+                           <a href="{% if request.user.is_authenticated %}{% url 'list_destination' %}{% else %}{% url 'login_in' %}{% endif %}">{{ destination.title }}</a>
+                        </h3>
+                        <p>{{ destination.description }}</p>
+                     </div>
+                  </article>
+               </div>
+               
+            {% endfor %}
+          </div>
+          <div class="section-btn-wrap text-center">
+             <a href="{% if request.user.is_authenticated %}{% url 'list_destination' %}{% else %}{% url 'login_in' %}{% endif %}" class="round-btn">Смотреть Ещё</a>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- ***Home destination html end here*** -->

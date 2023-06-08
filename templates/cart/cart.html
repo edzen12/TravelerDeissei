@@ -1,0 +1,85 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block content %}
+
+   <div id="page" class="page">
+      
+      {% include "base/header.html" %}
+      <main id="content" class="site-main">
+         <section class="booking-inner-page">
+            <!-- ***Inner Banner html start form here*** -->
+            <div class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="page-title">Cart</h1>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***Inner Banner html end here*** -->
+            <div class="cart-list-inner">
+               <div class="container">
+                  <form method="get" action="#">
+                     {% csrf_token %}
+                     <div class="table-responsive">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th></th>
+                                 <th>Product Name</th>
+                                 <th>Price</th>
+                                 <th>Quantity</th>
+                                 <th>Sub Total</th>
+                              </tr>
+                           </thead>
+                           {% for cart in cart_items %}
+                           <tr>
+                              <td class="">
+                                 <a class="close" data-dismiss="alert" aria-label="Close" href="{% url 'remove_cart_item' cart.id %}"><span aria-hidden="true">×</span></a>
+                                 <span class="cartImage"><img src="{{ cart.package.image.url }}" alt="image"></span>
+                              </td>
+                              <td data-column="Product Name">{{ cart.package.title }}</td>
+                              <td data-column="Price" class="price_per_person" id="price_per_person">$ {{ cart.package.price_per_person }}</td>
+                              <td data-column="Quantity" class="count-input">
+                                 <div>
+                                    <a href="{% url 'minus_quantity' cart.id %}"><i class="fa fa-minus"></i></a>
+                                    <input class="quantity" type="text" value="{{ cart.quantity }}" data-package-id="{{ cart.package.id }}" data-package-price="{{ cart.package.price_per_person }}">
+                                    <a href="{% url 'plus_quantity' cart.id %}"><i class="fa fa-plus"></i></a>
+                                 </div>
+                              </td>
+                              <td data-column="Sub Total">$ {{ cart.total_price }}</td>
+                           </tr>
+                           {% endfor %}
+                             
+                           
+                        </table>
+                     </div>
+                     <div class="totalAmountArea" style="border-top: 1px solid #dee2e6;">
+                        <ul class="list-unstyled">
+                           {% for cart in cart_items %}
+                           <li>{{ cart.package.title }} <span class="grandTotal" id="totalAmount">$ {{ cart.total_price }}</span></li>
+                           {% endfor %}
+                           <li style='border: 1px solid #dee2e6; padding: 15px 5px 15px 0px;'><strong>Общий Итог</strong> <span class="grandTotal" id="totalAmount">$ {{ total }}</span></li>
+                        </ul>
+                     </div>
+                     <div class="checkBtnArea text-right">
+                        <a class="round-btn" href="{% url 'booking' %}">checkout</a>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </section>
+      </main>
+      {% include "base/footer.html" %}
+
+      {% include "home/blocks/search-form.html" %}
+
+      {% if request.user.is_authenticated %}
+      {% include "profile/profile.html" %}
+      {% else %}
+      {% include "profile/not_register.html" %}
+      {% endif %}
+   </div>
+
+{% endblock content %} 

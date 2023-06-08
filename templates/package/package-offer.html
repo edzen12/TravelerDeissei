@@ -1,0 +1,117 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block package_page %}class="menu-active"{% endblock package_page %}
+
+
+{% block content %}
+   <div id="page" class="page">
+      
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         <section class="inner-page-wrap">
+            <!-- ***Inner Banner html start form here*** -->
+            <div class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="page-title">Package Offer</h1>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***Inner Banner html end here*** -->
+            <!-- ***offer package section html start form here*** -->
+            <div class="offer-package-wrap">
+               <div class="container">
+                  <div class="row gx-5">
+                     {% for packag in package_list %}
+                     <div class="col-md-6">
+                        <article class="offer-item" style="background-image: url({{ packag.image.url }});">
+                           {% if packag.activate_promo %}
+                           <div class="offer-badge">
+                              UPTO <span>{{ packag.percent }}%</span> off
+                           </div>
+                           {% endif %}
+                           <div class="offer-content">
+                              <div class="package-meta">
+                                 <ul>
+                                    <li>
+                                       <i class="fas fa-clock"></i>
+                                       {{ packag.days }}D/{{ packag.nights }}N
+                                    </li>
+                                    <li>
+                                       <i class="fas fa-user-friends"></i>
+                                       pax: {{ packag.max_person }}
+                                    </li>
+                                    <li>
+                                       <i class="fas fa-map-marker-alt"></i>
+                                       {{ packag.country.title }}
+                                    </li>
+                                 </ul>
+                              </div>
+                              <h3>
+                                 <a href="{{ packag.get_absolute_url }}">{{ packag.title }}</a>
+                              </h3>
+                              <p>
+                                 {{ packag.overview|truncatewords:10 }}
+                              </p>
+                              <div class="price-list">
+                                 {% if packag.activate_promo %}
+                                 price: 
+                                 <del>${{ packag.price_per_person }} </del>
+                                 <ins>${{ packag.price_promo }}</ins>
+                                 {% else %}
+                                 <ins>${{ packag.price_promo }}</ins>
+                                 {% endif %}
+                              </div>
+                              <a href="{% url 'add_cart_package' packag.id %}" class="round-btn">Добавить в корзину</a>
+                           </div>
+                        </article>
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+            <!-- ***offer package section html start form here*** -->
+            <!-- ***callback section html start form here*** -->
+            <div class="bg-img-fullcallback" style="background-image: url({% static 'assets/images/img16.jpg' %});">
+               <div class="overlay"></div>
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8 offset-lg-2 text-center">
+                        <div class="callback-content">
+                           <div class="video-button">
+                              <a  id="video-container" data-fancybox="video-gallery" href="https://www.youtube.com/watch?v=2OYar8OHEOU">
+                                 <i class="fas fa-play"></i>
+                              </a>
+                           </div>
+                           <h2 class="section-title">ARE YOU READY TO TRAVEL? REMEMBER US !!</h2>
+                           <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium. Sit ornare mollitia tenetur, aptent.</p>
+                           <div class="callback-btn">
+                              <a href="package.html" class="round-btn">View Packages</a>
+                              <a href="about.html" class="outline-btn outline-btn-white">Learn More</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***callback section html end here*** -->
+         </section>
+      </main>
+      
+      {% include "base/footer.html" %}
+
+      <a id="backTotop" href="#" class="to-top-icon">
+         <i class="fas fa-chevron-up"></i>
+      </a>
+      
+      {% include "home/blocks/search-form.html" %}
+
+      
+      {% include "profile/profile.html" %}
+
+   </div>
+{% endblock content %}

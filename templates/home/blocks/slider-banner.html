@@ -1,0 +1,24 @@
+{% load static %}
+<!-- ***home banner html start form here*** -->
+<section class="home-banner-section home-banner-slider">
+   {% for slider in sliders %}
+   <div class="home-banner d-flex flex-wrap align-items-center" style="background-image: url({{ slider.banner.url }});">
+       <div class="overlay"></div>
+       <div class="container">
+          <div class="banner-content text-center">
+             <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                   <h2 class="banner-title">{{ slider.title }}</h2>
+                   <p>{{ slider.description }}</p>
+                   <div class="banner-btn">
+                      <a href="{% if request.user.is_authenticated %}{% url 'about-page' %}{% else %}{% url 'login_in' %}{% endif %}" class="round-btn">Узнать Больше</a>
+                      <a href="{% if request.user.is_authenticated %}{% url 'no_promo_package' %}{% else %}{% url 'login_in' %}{% endif %}" class="outline-btn outline-btn-white">Наши Пакеты</a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+   </div>
+   {% endfor %}
+ </section>
+ <!-- ***home banner html end here*** -->

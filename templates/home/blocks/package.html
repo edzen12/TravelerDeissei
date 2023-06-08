@@ -1,0 +1,64 @@
+{% load static %}
+<!-- ***Home package html start from here*** -->
+<section class="home-package">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-sm-center">
+             <div class="section-heading">
+                <h5 class="sub-title">ПОПУЛЯРНЫЕ ПАКЕТЫ</h5>
+                <h2 class="section-title">ПОСМОТРИТЕ НАШ И ПАКЕТЫ</h2>
+                <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantium. Sit ornare mollitia tenetur, aptent.</p>
+             </div>
+          </div>
+       </div>
+       <div class="package-section">
+         {% for package in packages %}
+            <article class="package-item">
+               <figure class="package-image" style="background-image: url({{ package.image.url }});"></figure>
+               <div class="package-content">
+                  <h3>
+                     <a href="{% if request.user.is_authenticated %}{% url 'package_detail' package.slug %}{% else %}{% url 'login_in' %}{% endif %}">
+                        {{ package.title }}
+                     </a>
+                  </h3>
+                  <p>{{ package.overview|truncatewords:23 }}</p>
+                  <div class="package-meta">
+                     <ul>
+                        <li>
+                           <i class="fas fa-clock"></i>
+                           {{ package.days }}D/{{ package.nights }}N
+                        </li>
+                        <li>
+                           <i class="fas fa-user-friends"></i>
+                           pax: {{ package.max_person }}
+                        </li>
+                        <li>
+                           <i class="fas fa-map-marker-alt"></i>
+                           {{ package.travel_country }}
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="package-price">
+                  <div class="review-area">
+                     <div class="rating-start-wrap d-inline-block">
+                        <div class="rating-start">
+                           <span style="width: {{ package.raiting }}%"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <h6 class="price-list">
+                     <span>${{ package.price_per_person }}</span>
+                     / per person
+                  </h6>
+                  <a href="{% if request.user.is_authenticated %}{{ package.booking_package }}{% else %}{% url 'login_in' %}{% endif %}" class="outline-btn outline-btn-white">ЗАБРОНИРОВАТЬ</a>
+               </div>
+            </article>
+         {% endfor %}
+          <div class="section-btn-wrap text-center">
+             <a href="{% if request.user.is_authenticated %}{% url 'no_promo_package' %}{% else %}{% url 'login_in' %}{% endif %}" class="round-btn">ПОСМОТРЕТЬ ВСЕ ПАКЕТЫ</a>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- ***Home package html end here*** -->

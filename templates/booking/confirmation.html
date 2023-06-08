@@ -1,0 +1,152 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+
+   <div id="siteLoader" class="site-loader">
+      <div class="preloader-content">
+         <img src="{% static 'assets/images/loader1.gif' %}" alt="">
+      </div>
+   </div>
+
+   <div id="page" class="page">
+      
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         <!-- Inner Banner html start-->
+         <section class="confirm-inner-page">
+            <!-- ***Inner Banner html start form here*** -->
+            <div class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="page-title">ОПЛАТА УСПЕШНО ПРОИЗВЕДЕНА</h1>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***Inner Banner html end here*** -->
+            <div class="confirmation-outer">
+               <div class="container">
+                  <div class="success-notify">
+                     <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                     </div>
+                     <div class="success-content">
+                        <h3>ОПЛАТА ПОДТВЕРЖДЕНА</h3>
+                        <p>Спасибо, ваш платеж прошел успешно, и ваше бронирование подтверждено. Письмо с подтверждением было отправлено на адрес {{ contacts.email1 }}</p>
+                     </div>
+                  </div>
+                  <div class="confirmation-inner">
+                     <div class="row">
+                        <div class="col-lg-8 right-sidebar">
+                           <div class="confirmation-details">
+                              <h3>ДЕТАЛИ БРОНИРОВАНИЯ</h3>
+                              <table class="table">
+                                 <tbody>
+                                    <tr>
+                                       <td>Booking id:</td>
+                                       <td>{{ booking.booking_id_generator }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>First Name:</td>
+                                       <td>{{ booking.first_name }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Last Name:</td>
+                                       <td>{{ booking.last_name }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Email:</td>
+                                       <td>{{ booking.email }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Phone</td>
+                                       <td>{{ booking.phone }}</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Card number</td>
+                                       <td>XXXX-XXXX-XXXX-{{ booking.num_card }}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                              <div class="details payment-details">
+                                 <h3>ОПЛАТА</h3>
+                                 <div class="details-desc">
+                                    {% if booking.first_num_card == "4" %}
+                                    <p>Оплата прошла успешно через карту Visa</p>
+                                    {% elif booking.first_num_card == "9" %}
+                                    <p>Оплата прошла успешно через карту Элкарт</p>
+                                    {% else %}
+                                    <p>Оплата прошла успешно через другую карту</p>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                        <div class="price-table-summary">
+                           <h4 class="bg-title">Summary</h4>
+                           <table>
+                              <tbody>
+                                 <tr>
+                                    <td>
+                                       <strong>Стоимость пакетов </strong>
+                                    </td>
+                                 </tr>
+                                 {% for cart in booking.cart_item.all %}
+                                 <tr>
+                                    <td>
+                                       <strong>{{ cart.package.title }}</strong>
+                                    </td>
+                                    <td class="text-right">
+                                       ${{ cart.total_price }}
+                                    </td>
+                                 </tr>
+                                 {% endfor %}
+                                 <tr class="total">
+                                    <td>
+                                       <strong>Общая стоимость</strong>
+                                    </td>
+                                    <td class="text-right">
+                                       <strong>${{ total }}</strong>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                        <div class="widget-bg widget-support-wrap">
+                           <div class="icon">
+                              <i class="fas fa-phone-volume"></i>
+                           </div>
+                           <div class="support-content">
+                              <h5>HELP AND SUPPORT</h5>
+                              <a href="telto:12345678" class="phone">+55 123 987 00</a>
+                              <small>Monday to Friday 9.00am - 7.30pm</small>
+                           </div>
+                        </div>
+                     </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </main>
+      
+      {% include "base/footer.html" %}
+
+      <a id="backTotop" href="#" class="to-top-icon">
+         <i class="fas fa-chevron-up"></i>
+      </a>
+      
+      {% include "home/blocks/search-form.html" %}
+
+      {% if request.user.is_authenticated %}
+      {% include "profile/profile.html" %}
+      {% else %}
+      {% include "profile/not_register.html" %}
+      {% endif %}
+   </div>
+
+{% endblock content %}

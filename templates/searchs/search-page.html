@@ -1,0 +1,168 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+
+   <div id="page" class="page">
+      
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         <!-- ***Inner Banner html start form here*** -->
+         <div class="inner-banner-wrap">
+            <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+               <div class="container">
+                  <div class="inner-banner-content">
+                     <h1 class="page-title">{{ key }}</h1>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- ***Inner Banner html end here*** -->
+         <!-- search section html start -->
+         <div class="search-section">
+            <div class="container">
+               <div class="search-outer-wrap">
+                  <div class="row grid">
+                     {% if destinations %}
+                     {% for des in destinations %}
+                     <div class="col-lg-4 grid-item">
+                        <div class="search-content-wrap">
+                           <article class="post">
+                              <div class="entry-content">
+                                 <h3>
+                                    <a href="#">{{ des.title }}</a>
+                                 </h3>
+                                 <p>{{ des.description|truncatewords:12 }}</p>
+                                 <div class="button-container">
+                                    <a href="#" class="button-text">ЧИТАТЬ БОЛЬШЕ</a>
+                                 </div>
+                              </div>
+                           </article>
+                        </div>
+                     </div>
+                     {% endfor %}
+                     {% else %}
+                     <div class="container">
+                        <div class="inner-banner-content">
+                           <h1 class="page-title" style="align-items: center;">{{ key }}<br>Такого Нет</h1>
+                        </div>
+                     </div>
+                     {% endif %}
+                  </div>
+                  <!-- pagination html start-->
+                  <div class="post-navigation-wrap">
+                     <nav>
+                        <ul class="pagination">
+                           <li>
+                           <a href="#">
+                              <i class="fas fa-arrow-left"></i>
+                           </a>
+                           </li>
+                           <li class="active"><a href="#">1</a></li>
+                           <li><a href="#">2</a></li>
+                           <li><a href="#">3</a></li>
+                           <li>
+                           <a href="#">
+                              <i class="fas fa-arrow-right"></i>
+                           </a>
+                           </li>
+                        </ul>
+                     </nav>
+                  </div>
+                  <!-- pagination html start-->
+               </div>
+            </div>
+            <div class="content-search-from">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-6 offset-lg-3 text-center">
+                        <h4>Didn't find what you are looking for?</h4>
+                        <h2>SEARCH AGAIN !!</h2>
+                        <form class="search-form">
+                           <input type="text" name="search" placeholder="Search..">
+                           <button class="round-btn">
+                              Search
+                           </button>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- search section html end -->
+         
+      </main>
+      
+      {% include "base/footer.html" %}  
+
+      <a id="backTotop" href="#" class="to-top-icon">
+         <i class="fas fa-chevron-up"></i>
+      </a>
+      
+      {% include "home/blocks/search-form.html" %}
+
+      <!-- ***custom top bar offcanvas html*** -->
+      <div id="offCanvas" class="offcanvas-container">
+         <div class="offcanvas-inner">
+            <div class="offcanvas-sidebar">
+               <aside class="widget author_widget">
+                  <h3 class="widget-title">OUR PROPRIETOR</h3>
+                  <div class="widget-content text-center"> 
+                     <div class="profile"> 
+                        <figure class="avatar"> 
+                           <img src="assets/images/img21.jpg" alt=""> 
+                        </figure> 
+                        <div class="text-content"> 
+                           <div class="name-title"> 
+                              <h4> James Watson</h4> 
+                           </div> 
+                           <p>Accumsan? Aliquet nobis doloremque, aliqua? Inceptos voluptatem, duis tempore optio quae animi viverra distinctio cumque vivamus, earum congue, anim velit</p> 
+                        </div> 
+                        <div class="socialgroup"> 
+                           <ul> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-facebook"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-google"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-twitter"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-instagram"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-pinterest"></i> </a> </li> 
+                           </ul> 
+                        </div> 
+                     </div> 
+                  </div>
+               </aside>
+               <aside class="widget widget_text text-center">
+                  <h3 class="widget-title">CONTACT US</h3>
+                  <div class="textwidget widget-text">
+                     <p>Feel free to contact and<br/> reach us !!</p>
+                     <ul>
+                        <li>
+                           <a href="tel:+01988256203">
+                              <i aria-hidden="true" class="icon icon-phone1"></i>
+                              +01(988) 256 203
+                           </a>
+                        </li>
+                        <li>
+                           <a href="mailtop:info@domain.com">
+                              <i aria-hidden="true" class="icon icon-envelope1"></i>
+                              info@domain.com
+                           </a>
+                        </li>
+                        <li>
+                           <i aria-hidden="true" class="icon icon-map-marker1"></i>
+                           3146 Koontz, California
+                        </li>
+                     </ul>
+                  </div>
+               </aside>
+            </div>
+            <a href="#" class="offcanvas-close">
+               <i class="fas fa-times"></i>
+            </a>
+         </div>
+         <div class="overlay"></div>
+      </div>
+      <!-- ***custom top bar offcanvas html*** -->
+   </div>
+
+{% endblock content %}

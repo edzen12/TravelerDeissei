@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block home_page %}class="menu-active"{% endblock home_page %}
+
+{% block content %}
+
+   <div id="page" class="page">
+      
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         
+         {% include "home/blocks/slider-banner.html" %}
+
+         {% include "home/blocks/destination.html" %}
+
+         {% include "home/blocks/package.html" %}
+
+         {% include "home/blocks/callback.html" %}
+
+         {% include "home/blocks/offer.html" %}
+
+         {% include "home/blocks/gallery.html" %}
+
+         {% include "home/blocks/client-section.html" %}
+
+         {% include "home/blocks/blog.html" %}
+
+         {% include "home/blocks/testimonial.html" %}
+
+         {% include "home/blocks/callback2.html" %}
+         
+      </main>
+      
+      {% include "base/footer.html" %}
+
+      {% include "home/blocks/search-form.html" %}
+
+      {% if request.user.is_authenticated %}
+      {% include "profile/profile.html" %}
+      {% else %}
+      {% include "profile/not_register.html" %}
+      {% endif %}
+   </div>
+
+{% endblock content %}   

@@ -1,0 +1,268 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+   <div id="page" class="page">
+
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         <!-- ***Inner Banner html start form here*** -->
+         <div class="inner-banner-wrap">
+            <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+               <div class="container">
+                  <div class="inner-banner-content">
+                     <h1 class="page-title">{{ blog.title }}</h1>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- ***Inner Banner html end here*** -->
+         <div class="single-post-section">
+            <div class="single-post-inner">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8 primary right-sidebar">
+                        <!-- single blog post html start -->
+                        <figure class="feature-image">
+                           <img src="{{ blog.image.url }}" alt="">
+                        </figure>
+                        <div class="entry-meta">
+                           <span class="byline">
+                              <a href="">{{ blog.author.name }}</a>
+                           </span>
+                           <span class="posted-on">
+                              <a href="blog-archive.html">{{ blog.create_add }}</a>
+                           </span>
+                           <span class="comments-link">
+                              <a href="#commentArea">No Comments</a>
+                           </span>
+                        </div>
+                        <article class="single-content-wrap">
+                           <p>{{ blog.description }}</p>
+                           <blockquote>
+                              <p>{{ blog.my_comment }}</p>
+                           </blockquote>
+                        </article>
+                        <div class="meta-wrap">
+                           <div class="tag-links">
+                              {% for bl in blog.category.all %}
+                              <a href="#">{{ bl.title }}</a>
+                              {% endfor %}
+                           </div>
+                        </div>
+                        <div class="author-wrap">
+                           <div class="author-thumb">
+                              <img src="{{ blog.author.photo.url }}" alt="">
+                           </div>
+                           <div class="author-content">
+                              <h3 class="author-name">{{ blog.author.name }}</h3>
+                              <p>{{ blog.author.bio }}</p>
+                              <a href="blog-archive.html" class="button-text">View All Posts > </a>
+                           </div>
+                        </div>
+                        <!-- post comment html -->
+                        <div id="commentArea" class="comment-area">
+                           <h3 class="comment-title"> Comments</h3>
+                           <div class="comment-area-inner">
+                              <ol>
+                                 {% for review in blog.reviewblog_set.all %}
+                                 <li>
+                                    <div class="comment-content">
+                                       <div class="comment-header">
+                                          <h5 class="author-name">{{ review.name }}</h5>
+                                          <span class="post-on">{{ review.create_add }}</span>
+                                       </div>
+                                       <p>{{ review.message }}</p>
+                                    </div>
+                                 </li>
+                                 {% endfor %}
+                              </ol>
+                           </div>
+                           <div id="replyForm" class="comment-form-wrap">
+                              <h3 class="comment-title">Leave a Reply</h3>
+                              <p>Your email address will not be published. Required fields are marked *</p>
+                              <form action="{% url 'add_review' blog.id %}" method="post" class="comment-form">
+                                 {% csrf_token %}
+                                 <p class="full-width">
+                                    <label>Comment</label>
+                                    <textarea rows="9" name="message"></textarea>
+                                 </p>
+                                 <p>
+                                    <label>Name *</label>
+                                    <input type="text" name="name">
+                                 </p>
+                                 <p>
+                                    <label>Email *</label>
+                                    <input type="email" name="email">
+                                 </p>
+                                 <p class="full-width">
+                                    <input type="submit" name="submit" value="Post comment">
+                                 </p>
+                              </form>
+                           </div>   
+                        </div>
+                        <!-- blog post item html end -->
+                     </div>
+                     <div class="col-lg-4 secondary">
+                        <div class="sidebar">
+                           <aside class="widget author_widget">
+                              <h3 class="widget-title">ABOUT AUTHOR</h3>
+                              <div class="widget-content text-center"> 
+                                 <div class="profile"> 
+                                    <figure class="avatar"> 
+                                       <a href="#"> 
+                                          <img src="{{ blog.author.photo.url }}" alt=""> 
+                                       </a> 
+                                    </figure> 
+                                    <div class="text-content"> 
+                                       <div class="name-title"> 
+                                          <h4> 
+                                             <a href="#">{{ blog.author.name }}</a>
+                                          </h4> 
+                                       </div> 
+                                       <p>{{ blog.author.bio }}</p> 
+                                    </div>
+                                 </div> 
+                              </div>
+                           </aside>
+                           <aside class="widget widget_latest_post widget-post-thumb">
+                              <h3 class="widget-title">Recent Post</h3>
+                              <ul>
+                              {% for blog in blogs %}
+                                 <li>
+                                    <figure class="post-thumb">
+                                       <a href="blog-single.html"><img src="{{ blog.image.url }}" alt=""></a>
+                                    </figure>
+                                    <div class="post-content">
+                                       <h5>
+                                          <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>
+                                       </h5>
+                                       <div class="entry-meta">
+                                          <span class="posted-on">
+                                             <a href="{{ blog.get_absolute_url }}">{{ blog.create_add }}</a>
+                                          </span>
+                                          <span class="comments-link">
+                                             {% if blog.comments_blog is True %}
+                                             <a href="{{ blog.get_abolute_url }}">Все комментарии</a>
+                                             {% else %}
+                                             <a href="blog-single.html">Нет коментариев</a>
+                                             {% endif %}
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </li>
+                              {% endfor %} 
+                              </ul>
+                           </aside>
+                           <aside class="widget widget_adds">
+                              <figure>
+                                 <img src="assets/images/add-banner.jpg">
+                              </figure>
+                           </aside>
+                           <aside class="widget widget_category">
+                              <h3 class="widget-title">Categories</h3>
+                              <ul>
+                                 <li>
+                                    <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                    <a href="#">CULTURE</a>
+                                    <span>(3)</span>
+                                 </li>
+                                 <li>
+                                    <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                    <a href="#">DESIGN</a>
+                                    <span>(5)</span>
+                                 </li>
+                                 <li>
+                                    <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                    <a href="#">POPULAR</a>
+                                    <span>(2)</span>
+                                 </li>
+                                 <li>
+                                    <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                    <a href="#">SLIDER</a>
+                                    <span>(5)</span>
+                                 </li>
+                                 <li>
+                                    <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                    <a href="#">TECH</a>
+                                    <span>(1)</span>
+                                 </li>
+                              </ul>
+                           </aside>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </main>
+      
+      {% include "base/footer.html" %}
+
+      {% include "home/blocks/search-form.html" %}
+
+      <!-- ***custom top bar offcanvas html*** -->
+      <div id="offCanvas" class="offcanvas-container">
+         <div class="offcanvas-inner">
+            <div class="offcanvas-sidebar">
+               <aside class="widget author_widget">
+                  <h3 class="widget-title">OUR PROPRIETOR</h3>
+                  <div class="widget-content text-center"> 
+                     <div class="profile"> 
+                        <figure class="avatar"> 
+                           <img src="assets/images/img21.jpg" alt=""> 
+                        </figure> 
+                        <div class="text-content"> 
+                           <div class="name-title"> 
+                              <h4> James Watson</h4> 
+                           </div> 
+                           <p>Accumsan? Aliquet nobis doloremque, aliqua? Inceptos voluptatem, duis tempore optio quae animi viverra distinctio cumque vivamus, earum congue, anim velit</p> 
+                        </div> 
+                        <div class="socialgroup"> 
+                           <ul> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-facebook"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-google"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-twitter"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-instagram"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-pinterest"></i> </a> </li> 
+                           </ul> 
+                        </div> 
+                     </div> 
+                  </div>
+               </aside>
+               <aside class="widget widget_text text-center">
+                  <h3 class="widget-title">CONTACT US</h3>
+                  <div class="textwidget widget-text">
+                     <p>Feel free to contact and<br/> reach us !!</p>
+                     <ul>
+                        <li>
+                           <a href="tel:+01988256203">
+                              <i aria-hidden="true" class="icon icon-phone1"></i>
+                              +01(988) 256 203
+                           </a>
+                        </li>
+                        <li>
+                           <a href="mailtop:info@domain.com">
+                              <i aria-hidden="true" class="icon icon-envelope1"></i>
+                              info@domain.com
+                           </a>
+                        </li>
+                        <li>
+                           <i aria-hidden="true" class="icon icon-map-marker1"></i>
+                           3146 Koontz, California
+                        </li>
+                     </ul>
+                  </div>
+               </aside>
+            </div>
+            <a href="#" class="offcanvas-close">
+               <i class="fas fa-times"></i>
+            </a>
+         </div>
+         <div class="overlay"></div>
+      </div>
+      <!-- ***custom top bar offcanvas html*** -->
+   </div>
+{% endblock content %}
+ 

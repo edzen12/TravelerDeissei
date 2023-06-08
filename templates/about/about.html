@@ -1,0 +1,157 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block about_page %}class="menu-active"{% endblock about_page %}
+
+
+{% block content %}
+   <div id="page" class="page">
+      
+      {% include "base/header.html" %}
+
+      <main id="content" class="site-main">
+         <section class="inner-page-wrap">
+            <!-- ***Inner Banner html start form here*** -->
+            <div class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="page-title">О НАС</h1>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***Inner Banner html end here*** -->
+            <!-- ***about section html start form here*** -->
+            <div class="inner-about-wrap">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8">
+                        <div class="about-content">
+                           <figure class="about-image">
+                              <img src="{{ aboutus.image.url }}" alt="">
+                              <div class="about-image-content">
+                                 <h3>{{ aboutus.one_fact }}</h3>
+                              </div>
+                           </figure>
+                           <h2>{{ aboutus.title }}</h2>
+                           <p>{{ aboutus.description }}</p>
+                        </div>
+                        <div class="client-slider white-bg">
+                           {% for partners in photo_partners %}
+                           <figure class="client-item">
+                              <img src="{{ partners.partners_image.url }}" alt="">
+                           </figure>
+                           {% endfor %}
+                        </div>
+                     </div>
+                     <div class="col-lg-4">
+                        <div class="icon-box">
+                           <div class="box-icon">
+                              <i aria-hidden="true" class="fas fa-umbrella-beach"></i>
+                           </div>
+                           <div class="icon-box-content">
+                              <h3>{{ aboutus.first_plus }}</h3>
+                              <p>{{ aboutus.first_plus_desc }}</p>
+                           </div>
+                        </div>
+                        <div class="icon-box">
+                           <div class="box-icon">
+                              <i aria-hidden="true" class="fas fa-user-tag"></i>
+                           </div>
+                           <div class="icon-box-content">
+                              <h3>{{ aboutus.second_plus }}</h3>
+                              <p>{{ aboutus.second_plus_desc }}</p>
+                           </div>
+                        </div>
+                        <div class="icon-box">
+                           <div class="box-icon">
+                              <i aria-hidden="true" class="fas fa-headset"></i>
+                           </div>
+                           <div class="icon-box-content">
+                              <h3>{{ aboutus.third_plus }}</h3>
+                              <p>{{ aboutus.third_plus_desc }}</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***about section html start form here*** -->
+            
+            {% include "home/blocks/callback.html" %}
+
+         </section>
+      </main>
+      
+      {% include "base/footer.html" %}
+
+      <a id="backTotop" href="#" class="to-top-icon">
+         <i class="fas fa-chevron-up"></i>
+      </a>
+      
+      {% include "home/blocks/search-form.html" %}
+      
+      <div id="offCanvas" class="offcanvas-container">
+         <div class="offcanvas-inner">
+            <div class="offcanvas-sidebar">
+               <aside class="widget author_widget">
+                  <h3 class="widget-title">OUR PROPRIETOR</h3>
+                  <div class="widget-content text-center"> 
+                     <div class="profile"> 
+                        <figure class="avatar"> 
+                           <img src="assets/images/img21.jpg" alt=""> 
+                        </figure> 
+                        <div class="text-content"> 
+                           <div class="name-title"> 
+                              <h4> James Watson</h4> 
+                           </div> 
+                           <p>Accumsan? Aliquet nobis doloremque, aliqua? Inceptos voluptatem, duis tempore optio quae animi viverra distinctio cumque vivamus, earum congue, anim velit</p> 
+                        </div> 
+                        <div class="socialgroup"> 
+                           <ul> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-facebook"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-google"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-twitter"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-instagram"></i> </a> </li> 
+                              <li> <a target="_blank" href="#"> <i class="fab fa-pinterest"></i> </a> </li> 
+                           </ul> 
+                        </div> 
+                     </div> 
+                  </div>
+               </aside>
+               <aside class="widget widget_text text-center">
+                  <h3 class="widget-title">CONTACT US</h3>
+                  <div class="textwidget widget-text">
+                     <p>Feel free to contact and<br/> reach us !!</p>
+                     <ul>
+                        <li>
+                           <a href="tel:+01988256203">
+                              <i aria-hidden="true" class="icon icon-phone1"></i>
+                              +01(988) 256 203
+                           </a>
+                        </li>
+                        <li>
+                           <a href="mailtop:info@domain.com">
+                              <i aria-hidden="true" class="icon icon-envelope1"></i>
+                              info@domain.com
+                           </a>
+                        </li>
+                        <li>
+                           <i aria-hidden="true" class="icon icon-map-marker1"></i>
+                           3146 Koontz, California
+                        </li>
+                     </ul>
+                  </div>
+               </aside>
+            </div>
+            <a href="#" class="offcanvas-close">
+               <i class="fas fa-times"></i>
+            </a>
+         </div>
+         <div class="overlay"></div>
+      </div>
+      
+   </div>
+
+{% endblock content %}

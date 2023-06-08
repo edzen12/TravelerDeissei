@@ -1,0 +1,33 @@
+{% load static %}
+<!-- ***custom top bar offcanvas html*** -->
+<div id="offCanvas" class="offcanvas-container">
+    <div class="offcanvas-inner">
+       <div class="offcanvas-sidebar">
+          <aside class="widget author_widget">
+             <h3 class="widget-title"></h3>
+             <div class="widget-content text-center"> 
+                <div class="profile"> 
+                   <div class="text-content"> 
+                      <div class="name-title"> 
+                         <h4>Hello {{ user.first_name }}</h4> 
+                      </div> 
+                      <div class="name-title"> 
+                         <a href="{% url 'cart_view' %}" style="border: 1px solid green; width: 55%; padding: 10px; margin-left: 70px; background-color: green;">
+                           <h4 style="margin: 0; color: white;">Корзина</h4>
+                         </a> 
+                      </div> 
+                      <div>
+                        <a href="{% url 'logout' %}" class="qwert"><h3 class="qwer">Выйти</h3></a>
+                      </div>
+                   </div> 
+                </div> 
+             </div>
+          </aside>
+       </div>
+       <a href="#" class="offcanvas-close">
+          <i class="fas fa-times"></i>
+       </a>
+    </div>
+    <div class="overlay"></div>
+ </div>
+ <!-- ***custom top bar offcanvas html*** -->

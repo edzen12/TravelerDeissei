@@ -1,0 +1,67 @@
+{% load static %}
+{% comment %} {% if packages_promo %} {% endcomment %}
+<!-- ***Home offer html start from here*** -->
+<section class="home-offer">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-sm-center">
+             <div class="section-heading">
+                <h5 class="sub-title">ПРЕДЛОЖЕНИЕ И СКИДКИ</h5>
+                <h2 class="section-title">НАШИ СПЕЦИАЛЬНЫЕ ПАКЕТЫ</h2>
+                <p>Мне кажется, что некоторые люди хотят сделать это объявление, но только первые, и никто другой. Появление хвалителей. Пусть оно будет украшено эластичностью, подтянуто.</p>
+             </div>
+          </div>
+       </div>
+       <div class="offer-section">
+          <div class="row">
+
+            {% for package_promo in packages_promo %}
+               <div class="col-md-6">
+                  <article class="offer-item" style="background-image: url({{ package_promo.image.url }});">
+                     <div class="offer-badge">
+                        UPTO <span>{{ package_promo.percent }}%</span> off
+                     </div>
+                     <div class="offer-content">
+                        <div class="package-meta">
+                           <ul>
+                              <li>
+                                 <i class="fas fa-clock"></i>
+                                 {{ package_promo.days }}D/{{ package_promo.nights }}N
+                              </li>
+                              <li>
+                                 <i class="fas fa-user-friends"></i>
+                                 pax: {{ package_promo.max_person }}
+                              </li>
+                              <li>
+                                 <i class="fas fa-map-marker-alt"></i>
+                                 {{ package_promo.travel_country }}
+                              </li>
+                           </ul>
+                        </div>
+                        <h3>
+                           <a href="{{ package_promo.get_absolute_url }}">{{ package_promo.title }}</a>
+                        </h3>
+                        <p>
+                           {{ package_promo.overview|truncatewords:5 }}
+                        </p>
+                        <div class="price-list">
+                           price: 
+                           <del>${{ package_promo.price_per_person }} </del>
+                           <ins>${{ package_promo.price_promo }}</ins>
+                        </div>
+                        <a href="{{ package_promo.booking_package }}" class="round-btn">ЗАБРОНИРОВАТЬ</a>
+                     </div>
+                  </article>
+               </div>
+            {% endfor %}
+
+          </div>
+          <div class="section-btn-wrap text-center">
+             <a href="{% url 'package-promo' %}" class="round-btn">ПОСМОТРЕТЬ ВСЕ ПАКЕТЫ</a>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- ***Home offer html end here*** -->
+{% comment %} {% else %}
+{% endif %} {% endcomment %}

@@ -1,0 +1,206 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+
+      <div id="page" class="page">
+         
+         {% include "base/header.html" %}
+
+         <main id="content" class="site-main">
+            <!-- ***Inner Banner html start form here*** -->
+            <div class="inner-banner-wrap">
+               <div class="inner-baner-container" style="background-image: url({% static 'assets/images/img7.jpg' %});">
+                  <div class="container">
+                     <div class="inner-banner-content">
+                        <h1 class="page-title">Blog Archive</h1>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- ***Inner Banner html end here*** -->
+            <div class="archive-section blog-archive">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-8 primary right-sidebar">
+                        <!-- blog post item html start -->
+                        <div class="grid blog-inner row">
+                           {% for blog in blog_list %}
+                           <div class="grid-item col-md-6">
+                              <article class="post">
+                                 <figure class="featured-post">
+                                    <img src="{{ blog.image.url }}" alt="">
+                                 </figure>
+                                 <div class="post-content">
+                                    <h3><a href="blog-single.html">{{ blog.title }}</a></h3>
+                                    <p>{{ blog.description|truncatewords:13 }}</p>
+                                    <div class="post-footer d-flex justify-content-between align-items-center">
+                                       <div class="post-btn">
+                                          <a href="{{ blog.get_absolute_url }}" class="round-btn">Read More</a>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </article>
+                           </div>
+                           {% endfor %}
+
+                        </div>
+                        <!-- blog post item html end -->
+                     </div>
+                     <div class="col-lg-4 secondary">
+                        <div class="sidebar">
+                           <aside class="widget author_widget">
+                              <h3 class="widget-title">НАШ АВТОР</h3>
+                              <div class="widget-content text-center"> 
+                                 <div class="profile"> 
+                                    <figure class="avatar"> 
+                                       <a href="#"> 
+                                          <img src="{{ about_author.image.url }}" alt=""> 
+                                       </a> 
+                                    </figure> 
+                                    <div class="text-content"> 
+                                       <div class="name-title"> 
+                                          <h4> 
+                                             <a href="#">{{ about_author.name }}</a>
+                                          </h4> 
+                                       </div> 
+                                       <p>{{ about_author.bio }}</p> 
+                                    </div> 
+                                    <div class="socialgroup"> 
+                                       <ul> 
+                                          <li> 
+                                             <a target="_blank" href="{{ about_author.facebook }}"> 
+                                                <i class="fab fa-facebook"></i> 
+                                             </a> 
+                                          </li> 
+                                          <li> 
+                                             <a target="_blank" href="{{ about_author.google_link }}"> 
+                                                <i class="fab fa-google"></i> 
+                                             </a> 
+                                          </li> 
+                                          <li> 
+                                             <a target="_blank" href="{{ about_author.twitter }}"> 
+                                                <i class="fab fa-twitter"></i> 
+                                             </a> 
+                                          </li> 
+                                          <li> 
+                                             <a target="_blank" href="{{ about_author.instagram }}"> 
+                                                <i class="fab fa-instagram"></i> 
+                                             </a> 
+                                          </li> 
+                                          <li> 
+                                             <a target="_blank" href="{{ about_author.pinteres }}"> 
+                                                <i class="fab fa-pinterest"></i> 
+                                             </a> 
+                                          </li> 
+                                       </ul> 
+                                    </div> 
+                                 </div> 
+                              </div>
+                           </aside>
+                           <aside class="widget widget_latest_post widget-post-thumb">
+                              <h3 class="widget-title">Недавний пост</h3>
+                              <ul>
+                                 {% for post in posts %}
+                                 <li>
+                                    <figure class="post-thumb">
+                                       <a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}" alt=""></a>
+                                    </figure>
+                                    <div class="post-content">
+                                       <h5>
+                                          <a href="blog-single.html">{{ post.title }}</a>
+                                       </h5>
+                                       <div class="entry-meta">
+                                          <span class="posted-on">
+                                             <a href="blog-single.html">{{ post.create_add }}</a>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </li>
+                                 {% endfor %}
+                              </ul>
+                           </aside>
+                           <aside class="widget widget_adds">
+                              <figure>
+                                 <img src="{% static 'assets/images/add-banner.jpg' %}">
+                              </figure>
+                           </aside>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </main>
+         
+         {% include "base/footer.html" %}
+
+         <a id="backTotop" href="#" class="to-top-icon">
+            <i class="fas fa-chevron-up"></i>
+         </a>
+         
+         {% include "home/blocks/search-form.html" %}
+
+         <!-- ***custom top bar offcanvas html*** -->
+         <div id="offCanvas" class="offcanvas-container">
+            <div class="offcanvas-inner">
+               <div class="offcanvas-sidebar">
+                  <aside class="widget author_widget">
+                     <h3 class="widget-title">OUR PROPRIETOR</h3>
+                     <div class="widget-content text-center"> 
+                        <div class="profile"> 
+                           <figure class="avatar"> 
+                              <img src="assets/images/img21.jpg" alt=""> 
+                           </figure> 
+                           <div class="text-content"> 
+                              <div class="name-title"> 
+                                 <h4> James Watson</h4> 
+                              </div> 
+                              <p>Accumsan? Aliquet nobis doloremque, aliqua? Inceptos voluptatem, duis tempore optio quae animi viverra distinctio cumque vivamus, earum congue, anim velit</p> 
+                           </div> 
+                           <div class="socialgroup"> 
+                              <ul> 
+                                 <li> <a target="_blank" href="#"> <i class="fab fa-facebook"></i> </a> </li> 
+                                 <li> <a target="_blank" href="#"> <i class="fab fa-google"></i> </a> </li> 
+                                 <li> <a target="_blank" href="#"> <i class="fab fa-twitter"></i> </a> </li> 
+                                 <li> <a target="_blank" href="#"> <i class="fab fa-instagram"></i> </a> </li> 
+                                 <li> <a target="_blank" href="#"> <i class="fab fa-pinterest"></i> </a> </li> 
+                              </ul> 
+                           </div> 
+                        </div> 
+                     </div>
+                  </aside>
+                  <aside class="widget widget_text text-center">
+                     <h3 class="widget-title">CONTACT US</h3>
+                     <div class="textwidget widget-text">
+                        <p>Feel free to contact and<br/> reach us !!</p>
+                        <ul>
+                           <li>
+                              <a href="tel:+01988256203">
+                                 <i aria-hidden="true" class="icon icon-phone1"></i>
+                                 +01(988) 256 203
+                              </a>
+                           </li>
+                           <li>
+                              <a href="mailtop:info@domain.com">
+                                 <i aria-hidden="true" class="icon icon-envelope1"></i>
+                                 info@domain.com
+                              </a>
+                           </li>
+                           <li>
+                              <i aria-hidden="true" class="icon icon-map-marker1"></i>
+                              3146 Koontz, California
+                           </li>
+                        </ul>
+                     </div>
+                  </aside>
+               </div>
+               <a href="#" class="offcanvas-close">
+                  <i class="fas fa-times"></i>
+               </a>
+            </div>
+            <div class="overlay"></div>
+         </div>
+         <!-- ***custom top bar offcanvas html*** -->
+      </div>
+
+{% endblock content %}
